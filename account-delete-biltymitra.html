@@ -287,7 +287,7 @@
                 <label for="phone">Phone Number</label>
 
                 <div class="input-wrapper">
-                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" />
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required />
                 </div>
             </div>
 
@@ -304,7 +304,11 @@
                 Submit Delete Request
             </button>
 
-            <div class="success-message" id="successMessage">
+            <div class="error-message" id="errorMessage" role="alert" aria-live="assertive" tabindex="-1"
+                style="display:none; color:#b00020; margin-top:16px;">
+            </div>
+
+            <div class="success-message" id="successMessage" role="status" aria-live="polite" tabindex="-1">
                 Your account deletion request has been submitted successfully.
             </div>
 
@@ -324,10 +328,15 @@
     <script>
         const form = document.getElementById("deleteForm");
         const successMessage = document.getElementById("successMessage");
+        const errorMessage = document.getElementById("errorMessage");
         const submitBtn = document.getElementById("submitBtn");
 
         form.addEventListener("submit", async function (e) {
             e.preventDefault();
+
+            successMessage.style.display = "none";
+            errorMessage.style.display = "none";
+            errorMessage.textContent = "";
 
             submitBtn.innerText = "Submitting...";
             submitBtn.disabled = true;
@@ -355,13 +364,29 @@
                 if (response.ok) {
                     form.reset();
                     successMessage.style.display = "block";
+                    // Move focus to the success message so screen readers announce it
+                    successMessage.focus();
                 } else {
-                    alert("Failed to submit request.");
+                    let errorText = "Failed to submit request.";
+                    try {
+                        const responseText = await response.text();
+                        if (responseText) {
+                            errorText = responseText;
+                        }
+                    } catch (readError) {
+                        console.error(readError);
+                    }
+
+                    errorMessage.textContent = errorText;
+                    errorMessage.style.display = "block";
+                    errorMessage.focus();
                 }
 
             } catch (error) {
                 console.error(error);
-                alert("Something went wrong.");
+                errorMessage.textContent = "Something went wrong. Please try again.";
+                errorMessage.style.display = "block";
+                errorMessage.focus();
             }
 
             submitBtn.innerText = "Submit Delete Request";
