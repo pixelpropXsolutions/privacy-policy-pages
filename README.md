@@ -3,11 +3,11 @@
 A small repository of standalone privacy / account pages (HTML) used by PixelPropX Solutions for demo, integration, or documentation purposes.
 
 Contents
- - [account-delete-biltymitra.html](account-delete-biltymitra.html) — Account deletion / data removal page for BiltyMitra
- - [bilty-mitra.html](bilty-mitra.html) — Main BiltyMitra privacy page template
- - [mirror-pattern-app.html](mirror-pattern-app.html) — Privacy page for Mirror Pattern App
- - [pay-voice.html](pay-voice.html) — Privacy / policy content for Pay Voice
- - [pixel-wallet.html](pixel-wallet.html) — Privacy / policy content for Pixel Wallet
+ - [account-delete-biltymitra.html](delete-request/account-delete-biltymitra.html) — Account deletion / data removal page for BiltyMitra
+ - [bilty-mitra.html](policies/bilty-mitra.html) — Main BiltyMitra privacy page template
+ - [mirror-pattern-app.html](policies/mirror-pattern-app.html) — Privacy page for Mirror Pattern App
+ - [pay-voice.html](policies/pay-voice.html) — Privacy / policy content for Pay Voice
+ - [pixel-wallet.html](policies/pixel-wallet.html) — Privacy / policy content for Pixel Wallet
 
 Purpose
 - Collect and maintain small, standalone HTML privacy pages that can be linked from apps, documentation, or used as templates.
